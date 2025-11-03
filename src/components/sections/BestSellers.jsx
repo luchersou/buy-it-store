@@ -46,7 +46,7 @@ const BestSellers = () => {
       {loading ? (
         <Loading text="Loading..." />
       ) : error ? (
-        <Typography color="error" textAlign="center">
+        <Typography sx={{color:"error", textAlign:"center"}}>
           Error fetching products.
         </Typography>
       ) : (

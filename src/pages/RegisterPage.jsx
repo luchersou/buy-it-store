@@ -51,12 +51,12 @@ const RegisterPage = () => {
 
   return (
     <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="80vh"
       sx={{
-        bgcolor: colors["--clr-white-3"],
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "80vh",
+        bgcolor: colors["--clr-white-3"]
       }}
     >
       <Card
@@ -69,9 +69,8 @@ const RegisterPage = () => {
         <CardContent sx={{ p: { xs: 3, sm: 4 } }}>
           <Typography
             variant="h5"
-            textAlign="center"
             gutterBottom
-            sx={{ fontWeight: 600 }}
+            sx={{ textAlign: "center", fontWeight: 600 }}
           >
             Create your account
           </Typography>
@@ -106,7 +105,7 @@ const RegisterPage = () => {
             />
 
             {error && (
-              <Typography color="error" variant="body2" mt={1}>
+              <Typography color="error" variant="body2" sx={{ mt: 1 }}>
                 {error}
               </Typography>
             )}
@@ -130,7 +129,7 @@ const RegisterPage = () => {
 
           <Divider sx={{ my: 3 }} />
 
-          <Typography variant="body2" textAlign="center">
+          <Typography variant="body2" sx={{ textAlign: "center" }} >
             Already have an account?{" "}
             <Link href="/login" underline="hover">
               Sign in

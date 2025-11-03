@@ -77,7 +77,7 @@ const Checkout = () => {
           ]}
         />
 
-        <Typography variant="h4" fontWeight={600} mb={4} mt={2}>
+        <Typography variant="h4" sx={{ fontWeight: 600, mb: 4, mt: 2 }}>
           Complete Your Order
         </Typography>
 

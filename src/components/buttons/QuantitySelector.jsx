@@ -5,10 +5,10 @@ import colors from "../../theme/colors";
 const QuantitySelector = ({ quantity, onIncrease, onDecrease }) => {
   return (
     <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
       sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
         backgroundColor: colors["--clr-gray-10"],
         borderRadius: 10,
         height: 40,

@@ -31,10 +31,7 @@ const FAQ = () => {
       >
         <Typography
           variant="h5"
-          fontWeight={700}
-          textAlign="center"
-          mb={5}
-          sx={{ color: colors["--clr-black-1"] }}
+          sx={{ fontWeight: 700, textAlign: "center", mb: 5, color: colors["--clr-black-1"] }}
         >
          Frequently Asked Questions (FAQ)
         </Typography>
@@ -59,15 +56,14 @@ const FAQ = () => {
                 "& .MuiAccordionSummary-content": { my: 1 },
               }}
             >
-              <Typography fontWeight={600} variant="subtitle1">
+              <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                 {item.question}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography
                 variant="body1"
-                color={colors["--clr-black-1"]}
-                sx={{ lineHeight: 1.6 }}
+                sx={{ color: colors["--clr-black-1"], lineHeight: 1.6 }}
               >
                 {item.answer}
               </Typography>

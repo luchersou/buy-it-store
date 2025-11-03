@@ -11,19 +11,19 @@ const CheckoutForm = ({ form, onSubmit, loading, paymentMethod, setPaymentMethod
   return (
     <Paper elevation={0} sx={{ p: 3, border: `1px solid ${colors["--clr-gray-9"]}`, flex: 2 }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Typography variant="h6" fontWeight={600} mb={2}>
+        <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
           Personal Information
         </Typography>
         <PersonalDataForm form={form} />
 
         <Divider sx={{ my: 3 }} />
-        <Typography variant="h6" fontWeight={600} mb={2}>
+        <Typography variant="h6" sx={{ fontWeight: 600, m:2 }}>
           Shipping Address
         </Typography>
         <AddressForm form={form} />
 
         <Divider sx={{ my: 3 }} />
-        <Typography variant="h6" fontWeight={600} mb={2}>
+        <Typography variant="h6" sx={{ fontWeight: 600, m:2 }}>
           Payment Method
         </Typography>
         <PaymentSection

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   TextField,
@@ -50,13 +50,13 @@ const LoginPage = () => {
 
   return (
     <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="80vh"
-      sx={{ 
-        bgcolor: colors["--clr-white-2"],
-       }}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "80vh",
+        bgcolor: colors["--clr-white-2"]
+      }}
     >
       <Card
         sx={{
@@ -73,10 +73,12 @@ const LoginPage = () => {
         <CardContent>
           <Typography
             variant="h5"
-            textAlign="center"
-            fontWeight={600}
             gutterBottom
-            sx={{ color: colors["--clr-gray-1"] }}
+            sx={{
+              color: colors["--clr-gray-1"],
+              textAlign: "center",
+              fontWeight: 600
+            }}
           >
             Sign in to your account
           </Typography>
@@ -115,7 +117,7 @@ const LoginPage = () => {
                 mt: 2,
                 borderRadius: 2,
                 bgcolor: colors["--clr-yellow-1"],
-                color: "#000",
+                color: colors["--clr-black-1"],
                 fontWeight: 600,
                 "&:hover": { bgcolor: colors["--clr-yellow-2"] },
               }}
@@ -146,7 +148,10 @@ const LoginPage = () => {
             Sign in with Google
           </Button>
 
-          <Typography variant="body2" textAlign="center" mt={3}>
+          <Typography
+            variant="body2"
+            sx={{ textAlign: "center", mt: 3 }}
+          >
             Don't have an account?{" "}
             <Link href="/register" underline="hover" sx={{ fontWeight: 600 }}>
               Sign Up

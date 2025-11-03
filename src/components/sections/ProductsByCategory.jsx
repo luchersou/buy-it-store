@@ -73,14 +73,16 @@ const ProductsByCategory = () => {
     <Wrapper>
       <Box
         component="section"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        textAlign="center"
-        mb={{ xs: 2, sm: 3 }}
-        px={{ xs: 2, sm: 3 }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          mb: { xs: 2, sm: 3 },
+          px: { xs: 2, sm: 3 }
+        }}
       >
-        <Box display="flex" alignItems="center" justifyContent="center" mb={1}>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mb: 1 }}>
           <Category
             sx={{
               color: colors["--clr-yellow-1"],
@@ -184,11 +186,7 @@ const ProductsByCategory = () => {
           </Box>
 
           {hasMoreProducts && (
-            <Box 
-              display="flex" 
-              justifyContent="center" 
-              mt={{ xs: 3, sm: 3.5, md: 4 }}
-            >
+            <Box sx={{ display: "flex", justifyContent: "center", mt: { xs: 3, sm: 3.5, md: 4 } }}>
               <Button
                 variant="outlined"
                 color="primary"

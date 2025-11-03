@@ -54,15 +54,14 @@ const CartItem = ({ item, onIncrease, onDecrease }) => {
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Typography
               variant="subtitle1"
-              fontWeight={600}
-              sx={{ fontSize: "0.9rem", mb: 0.5 }}
+              sx={{ fontWeight: 600, fontSize: "0.9rem", mb: 0.5 }}
             >
               {truncate(item.title)}
             </Typography>
             <Typography
               variant="body2"
-              color={colors["--clr-gray-3"]}
               sx={{
+                color: colors["--clr-gray-3"],
                 textTransform: "capitalize",
                 fontSize: "0.8rem",
               }}
@@ -83,7 +82,7 @@ const CartItem = ({ item, onIncrease, onDecrease }) => {
             borderTop: `1px solid ${colors["--clr-gray-10"]}`,
           }}
         >
-          <Typography variant="h6" color={colors["--clr-gray-4"]} fontWeight={700} sx={{ fontSize: "1rem" }}>
+          <Typography variant="h6" sx={{ fontSize: "1rem", color: colors["--clr-gray-4"], fontWeight: 700 }}>
             $ {item.price.toFixed(2)}
           </Typography>
 

@@ -35,8 +35,7 @@ const BreadcrumbsNav = ({ items }) => {
         ) : (
           <Typography
             key={index}
-            color={colors["--clr-black-2"]}
-            sx={{ textTransform: "capitalize" }}
+            sx={{ color: colors["--clr-black-2"], textTransform: "capitalize" }}
           >
             {item.label}
           </Typography>

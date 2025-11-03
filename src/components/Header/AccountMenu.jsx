@@ -73,8 +73,8 @@ const AccountMenu = () => {
           <Box sx={{ textAlign: "left", ml: 0.5 }}>
             <Typography
               variant="caption"
-              display="block"
               sx={{
+                display: "block",
                 color: colors["--clr-gray-7"],
                 fontSize: { xs: "0.65rem", sm: "0.75rem" },
               }}
@@ -83,9 +83,10 @@ const AccountMenu = () => {
             </Typography>
             <Typography
               variant="body2"
-              fontWeight="bold"
-              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-            >
+              sx={{ 
+                fontWeight: "bold", 
+                fontSize: { xs: "0.75rem", sm: "0.875rem" } 
+              }}>
               Sign In
             </Typography>
           </Box>

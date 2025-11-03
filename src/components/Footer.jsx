@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Typography, Grid, Link, IconButton } from "@mui/material";
+import { Box, Typography, Grid, IconButton } from "@mui/material";
 import { Facebook, Instagram, Twitter, YouTube, ShoppingCart } from "@mui/icons-material";
 import colors from "../theme/colors";
 
@@ -18,7 +17,7 @@ const Footer = () => {
     >
       <Grid container spacing={{ xs: 3, sm: 3.5, md: 4 }} justifyContent="center">
         <Grid size={{ xs: 12, sm: 12, md: 3 }}>
-          <Box display="flex" alignItems="center" mb={{ xs: 1, sm: 1.5, md: 2 }}>
+          <Box sx={{ display: "flex", alignItems: "center", mb: { xs: 1, sm: 1.5, md: 2 } }}>
             <ShoppingCart 
               sx={{ 
                 color: colors["--clr-yellow-3"], 
@@ -67,27 +66,27 @@ const Footer = () => {
             }}
           >
             <Typography
-              color={colors["--clr-white-1"]}
-              sx={{ fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } }}
-            >
+            sx={{ color: colors["--clr-white-1"], 
+            fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } 
+          }}>
               Products
             </Typography>
             <Typography
-              color={colors["--clr-white-1"]}
-              sx={{ fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } }}
-            >
+            sx={{ color: colors["--clr-white-1"], 
+            fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } 
+          }}>
               Categories
             </Typography>
             <Typography
-              color={colors["--clr-white-1"]}
-              sx={{ fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } }}
-            >
+              sx={{ color: colors["--clr-white-1"], 
+              fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } 
+            }}>
               Cart
             </Typography>
             <Typography
-              color={colors["--clr-white-1"]}
-              sx={{ fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } }}
-            >
+              sx={{ color: colors["--clr-white-1"], 
+              fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } 
+            }}>
               My Account
             </Typography>
           </Box>
@@ -114,27 +113,27 @@ const Footer = () => {
               }}
             >
               <Typography
-                color={colors["--clr-white-1"]}
-                sx={{ fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } }}
-              >
+                sx={{ color: colors["--clr-white-1"], 
+                fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } 
+              }}>
                 About us
               </Typography>
               <Typography
-                color={colors["--clr-white-1"]}
-                sx={{ fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } }}
-              >
+                sx={{ color: colors["--clr-white-1"], 
+                fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } 
+              }}>
                 Contact
               </Typography>
               <Typography
-                color={colors["--clr-white-1"]}
-                sx={{ fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } }}
-              >
+                sx={{ color: colors["--clr-white-1"], 
+                fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } 
+              }}>
                 Frequently Asked Questions (FAQ)
               </Typography>
               <Typography
-                color={colors["--clr-white-1"]}
-                sx={{ fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } }}
-              >
+                sx={{ color: colors["--clr-white-1"],
+                fontSize: { xs: "0.85rem", sm: "0.875rem", md: "0.9rem" } 
+                }}>
                 Privacy Policy
               </Typography>
             </Box>
@@ -153,7 +152,7 @@ const Footer = () => {
           >
             Follow us
           </Typography>
-          <Box display="flex" gap={{ xs: 0.8, sm: 1, md: 1.2 }}>
+          <Box sx={{ display: "flex", gap: { xs: 0.8, sm: 1, md: 1.2 } }}>
             <IconButton 
               color="inherit" 
               sx={{ 

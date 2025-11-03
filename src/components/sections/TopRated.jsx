@@ -21,13 +21,15 @@ const TopRated = () => {
     <Wrapper>
       <Box
         component="section"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        textAlign="center"
-        mb={3}
-      >
-        <Box display="flex" alignItems="center" justifyContent="center" mb={1}>
+        sx={{ 
+          display: "flex", 
+          flexDirection: "column", 
+          alignItems: "center", 
+          textAlign: "center", 
+          mb: 3 
+        }}>
+
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mb: 1 }}>
           <Star sx={{ color: colors["--clr-yellow-3"], mr: 1 }} />
           <Typography
             variant="h5"
@@ -62,7 +64,7 @@ const TopRated = () => {
       {loading ? (
         <Loading text="Loading products..." />
       ) : error ? (
-        <Typography color="error" textAlign="center">
+        <Typography color="error" sx={{ textAlign:"center" }}>
           Error loading products: {error.message}
         </Typography>
       ) : (

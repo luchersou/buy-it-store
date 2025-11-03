@@ -4,11 +4,11 @@ import colors from "../theme/colors";
 const Loading = ({ text = "Loading..." }) => {
   return (
     <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      minHeight="100vh"
       sx={{
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        minHeight:"100vh",
         bgcolor: colors["--clr-gray-10"],
         flexDirection: "row",
         gap: 2,

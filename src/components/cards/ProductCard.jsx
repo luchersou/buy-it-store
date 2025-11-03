@@ -44,19 +44,12 @@ const ProductCard = ({ product }) => {
       >
         <Typography 
           variant="caption" 
-          color={colors["--clr-gray-3"]}
-          sx={{ display: 'block', mt: 0.5, mb: 0.5, textTransform: 'capitalize' }}
+          sx={{ display: 'block', mt: 0.5, mb: 0.5, color: colors["--clr-gray-3"], textTransform: 'capitalize' }}
         >
           {product.category}
         </Typography>
         
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          mb={2}
-          sx={{ mt: 0.5 }}
-        >
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mb: 2, mt: 0.5 }}>
           <Rating value={product.rating?.rate ?? 4} precision={0.5} readOnly size="big" />
           <Typography variant="body2" sx={{ ml: 1, color: colors["--clr-gray-3"] }}>
             {product.rating?.count ?? 100}

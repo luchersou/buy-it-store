@@ -47,12 +47,12 @@ const ProductDetails = () => {
 
   if (loading) return <Loading text="Loading..." />;
   if (error) return (
-    <Typography variant="h6" textAlign="center" color="error" mt={4}>
+    <Typography variant="h6" color="error" sx={{ textAlign: "center", mt: 4 }}>
       Error loading product: {error}
     </Typography>
   );
   if (!product) return (
-    <Typography variant="h6" textAlign="center" mt={4}>
+    <Typography variant="h6" sx={{ textAlign: "center", mt: 4 }}>
       Product not found.
     </Typography>
   );
@@ -72,7 +72,7 @@ const ProductDetails = () => {
         />
 
         <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4 }}>
-          <Box sx={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "flex-start", bgcolor: "#ffffff", borderRadius: 1, p: 2 }}>
+          <Box sx={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "flex-start", bgcolor: colors["--clr-white-1"], borderRadius: 1, p: 2 }}>
             <img
               src={product.image}
               alt={product.title}
@@ -81,26 +81,26 @@ const ProductDetails = () => {
           </Box>
 
           <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
-            <Typography variant="h5" fontWeight={600}>
+            <Typography variant="h5" sx={{ fontWeight: 600 }}>
               {product.title}
             </Typography>
 
-            <Typography variant="subtitle1" color={colors["--clr-gray-3"]}>
+            <Typography variant="subtitle1" sx={{ color: colors["--clr-gray-3"] }}>
               Category: {product.category}
             </Typography>
 
-            <Typography variant="h4" fontWeight={700} color={colors["--clr-gray-4"]}>
+            <Typography variant="h4" sx={{ fontWeight: 700, color: colors["--clr-gray-4"] }} >
               $ {product.price?.toFixed(2)}
             </Typography>
 
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <Rating value={product.rating?.rate || 0} precision={0.1} readOnly />
-              <Typography variant="body2" color={colors["--clr-gray-3"]}>
+              <Typography variant="body2" sx={{ color: colors["--clr-gray-3"] }} >
                 ({product.rating?.count || 0} reviews)
               </Typography>
             </Box>
 
-            <Typography variant="body1" color={colors["--clr-gray-3"]}>
+            <Typography variant="body1" sx={{ color: colors["--clr-gray-3"] }} >
               {expanded || !shouldTruncate 
                 ? product.description 
                 : `${product.description.substring(0, MAX_LENGTH_DESCRIPTION)}...`}
@@ -133,7 +133,7 @@ const ProductDetails = () => {
 
         {filtered.length > 0 && (
           <Box sx={{ mt: 10 }}>
-            <Typography variant="h6" fontWeight={600} mb={2}>
+            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }} >
               Related Products
             </Typography>
 
