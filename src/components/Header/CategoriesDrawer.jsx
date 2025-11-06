@@ -42,31 +42,6 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
     return () => unsubscribe();
   }, []);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleCategorySelect = (category) => {
-    if (onCategorySelect) {
-      onCategorySelect(category);
-    }
-    handleClose();
-  };
-
-  const handleLogin = () => {
-    handleClose();
-    navigate('/login');
-  };
-
-  const handleRegister = () => {
-    handleClose();
-    navigate('/register');
-  };
-
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -86,7 +61,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
   return (
     <>
       <IconButton
-        onClick={handleOpen}
+        onClick={() => setOpen(true)}
         aria-label="open categories"
         sx={{
           color: 'white',
@@ -101,7 +76,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
       <Drawer
         anchor="left"
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         slotProps={{
           paper: {
             sx: {
@@ -125,7 +100,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
           <Logo />
 
           <IconButton
-            onClick={handleClose}
+            onClick={() => setOpen(false)}
             sx={{
               color: colors["--clr-white-1"],
               '&:hover': {
@@ -195,7 +170,10 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
               <Button
                 variant="contained"
                 fullWidth
-                onClick={handleLogin}
+                onClick={() => {
+                  setOpen(false);
+                  navigate('/login');
+                }}
                 sx={{
                   bgcolor: colors["--clr-yellow-1"],
                   color: colors["--clr-blue-gray-1"],
@@ -213,7 +191,10 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
               <Button
                 variant="outlined"
                 fullWidth
-                onClick={handleRegister}
+                onClick={() => {
+                  handleClose();
+                  navigate('/register');
+                }}
                 sx={{
                   borderColor: colors["--clr-gray-7"],
                   color: colors["--clr-blue-gray-1"],
@@ -262,7 +243,10 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
               {categories.map((category, index) => (
                 <ListItem key={index} disablePadding>
                   <ListItemButton
-                    onClick={() => handleCategorySelect(category)}
+                    onClick={() => {
+                      onCategorySelect(category);
+                      setOpen(false);
+                    }}
                     sx={{
                       py: 1.5,
                       px: 2,

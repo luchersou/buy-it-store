@@ -123,7 +123,7 @@ const ProductDetails = () => {
             
             <Box sx={{ mt: 3, maxWidth: 300 }}>
               {quantity === 0 ? (
-                <AddToCartButton onClick={handleAdd}>Add to Cart</AddToCartButton>
+                <AddToCartButton onClick={handleAdd} />
               ) : (
                 <QuantitySelector quantity={quantity} onIncrease={handleAdd} onDecrease={handleRemove} />
               )}

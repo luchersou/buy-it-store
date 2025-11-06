@@ -3,7 +3,7 @@ import colors from "../../theme/colors";
 
 const AddToCartButton = ({
   onClick,
-  children = "Add to Cart",
+  children = "ADD TO CART",
   fullWidth = true,
   ...props
 }) => {

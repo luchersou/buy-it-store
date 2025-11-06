@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
+import { menuItems, logoutItem } from "../../data/menuItems";
 import {
   Box,
   Button,
@@ -16,11 +17,6 @@ import {
 import {
   AccountCircle,
   KeyboardArrowDown,
-  Person,
-  ShoppingBag,
-  FavoriteBorder,
-  Logout,
-  Settings,
 } from "@mui/icons-material";
 import colors from "../../theme/colors";
 
@@ -37,11 +33,6 @@ const AccountMenu = () => {
 
   const handleClick = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
-
-  const handleNavigate = (path) => {
-    handleClose();
-    navigate(path);
-  };
 
   const handleLogout = async () => {
     try {
@@ -67,7 +58,7 @@ const AccountMenu = () => {
             minWidth: { xs: "auto" },
             px: { xs: 1, sm: 1.5 },
             transition: "transform 0.2s ease-in-out",
-            "&:hover": { transform: "scale(1.08)", },
+            "&:hover": { transform: "scale(1.08)" },
           }}
         >
           <Box sx={{ textAlign: "left", ml: 0.5 }}>
@@ -83,10 +74,11 @@ const AccountMenu = () => {
             </Typography>
             <Typography
               variant="body2"
-              sx={{ 
-                fontWeight: "bold", 
-                fontSize: { xs: "0.75rem", sm: "0.875rem" } 
-              }}>
+              sx={{
+                fontWeight: "bold",
+                fontSize: { xs: "0.75rem", sm: "0.875rem" },
+              }}
+            >
               Sign In
             </Typography>
           </Box>
@@ -97,27 +89,21 @@ const AccountMenu = () => {
           open={open}
           onClose={handleClose}
           disableScrollLock
-          slotProps={{ 
-            paper: { 
-              sx: {
-                minWidth: { xs: "200px", sm: "240px" },
-              },
-            },
-          }}
         >
           <Box sx={{ p: { xs: 1.5, sm: 2 } }}>
             <Button
               fullWidth
               variant="contained"
-              onClick={() => handleNavigate("/login")}
+              onClick={() => {
+                handleClose();
+                navigate("/login");
+              }}
               sx={{
                 bgcolor: colors["--clr-yellow-1"],
                 color: colors["--clr-black-3"],
                 fontWeight: "bold",
                 mb: 1,
                 py: { xs: 0.75, sm: 1 },
-                fontSize: { xs: "0.8rem", sm: "0.875rem" },
-                "&:hover": { bgcolor: colors["--clr-yellow-2"] },
               }}
             >
               SIGN IN
@@ -126,13 +112,14 @@ const AccountMenu = () => {
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => handleNavigate("/register")}
+              onClick={() => {
+                handleClose();
+                navigate("/register");
+              }}
               sx={{
                 color: colors["--clr-blue-gray-1"],
                 borderColor: colors["--clr-gray-8"],
                 py: { xs: 0.75, sm: 1 },
-                fontSize: { xs: "0.8rem", sm: "0.875rem" },
-                "&:hover": { borderColor: colors["--clr-white-7"], bgcolor: colors["--clr-white-2"] },
               }}
             >
               SIGN UP
@@ -145,6 +132,7 @@ const AccountMenu = () => {
 
   const displayName = user.displayName || user.email?.split("@")[0] || "User";
   const firstName = displayName.split(" ")[0];
+  const LogoutIcon = logoutItem.icon;
 
   return (
     <>
@@ -170,18 +158,18 @@ const AccountMenu = () => {
           minWidth: { xs: "auto" },
           px: { xs: 1, sm: 1.5 },
           transition: "transform 0.2s ease-in-out",
-          "&:hover": { transform: "scale(1.08)", },
+          "&:hover": { transform: "scale(1.08)" },
         }}
       >
         <Box sx={{ textAlign: "left", ml: 0.5 }}>
           <Typography
             variant="caption"
             display="block"
-            sx={{ color: colors["--clr-gray-7"], fontSize: { xs: "0.65rem", sm: "0.75rem" } }}
+            sx={{ color: colors["--clr-gray-7"] }}
           >
             Hello, {firstName}
           </Typography>
-          <Typography variant="body2" fontWeight="bold" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
+          <Typography variant="body2" fontWeight="bold">
             Account & Lists
           </Typography>
         </Box>
@@ -192,64 +180,39 @@ const AccountMenu = () => {
         open={open}
         onClose={handleClose}
         disableScrollLock
-        slotProps={{ 
-          paper: { 
-            sx: {
-              minWidth: { xs: "200px", sm: "240px" },
-            },
-          },
-        }}
       >
         <Box sx={{ px: 2, py: 1.5, bgcolor: colors["--clr-white-2"] }}>
-          <Typography variant="body2" fontWeight="bold" color={colors["--clr-black-1"]}>
+          <Typography variant="body2" fontWeight="bold">
             {displayName}
           </Typography>
-          <Typography variant="caption" color={colors["--clr-gray-3"]}>
+          <Typography variant="caption" sx={{ color: colors["--clr-gray-3"]}}>
             {user.email}
           </Typography>
         </Box>
 
         <Divider />
 
-        <MenuItem >
-          <ListItemIcon>
-            <Person fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>My Account</ListItemText>
-        </MenuItem>
-
-        <MenuItem >
-          <ListItemIcon>
-            <ShoppingBag fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>My Orders</ListItemText>
-        </MenuItem>
-
-        <MenuItem >
-          <ListItemIcon>
-            <FavoriteBorder fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Wish List</ListItemText>
-        </MenuItem>
-
-        <MenuItem >
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Settings</ListItemText>
-        </MenuItem>
+        
+        {menuItems.map(({ label, icon: Icon }) => (
+          <MenuItem key={label}>
+            <ListItemIcon>
+              <Icon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>{label}</ListItemText>
+          </MenuItem>
+        ))}
 
         <Divider />
 
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <LogoutIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Sign Out</ListItemText>
+          <ListItemText>{logoutItem.label}</ListItemText>
         </MenuItem>
       </Menu>
     </>
   );
-}
+};
 
 export default AccountMenu;

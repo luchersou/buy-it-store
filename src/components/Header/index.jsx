@@ -27,10 +27,6 @@ const Header = () => {
     error,
   } = useFetch("https://fakestoreapi.com/products/categories");
 
-  const handleCategorySelect = (category) => {
-    navigate(`/products/category/${category}`);
-  };
-
   return (
     <AppBar
       component="header"
@@ -59,7 +55,9 @@ const Header = () => {
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <CategoriesDrawer onCategorySelect={handleCategorySelect}>
+              <CategoriesDrawer 
+                onCategorySelect={(category) => navigate(`/products/category/${category}`)}
+              >
                 <IconButton color="inherit">
                   <MenuIcon />
                 </IconButton>
@@ -91,9 +89,11 @@ const Header = () => {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <CategoriesDrawer onCategorySelect={handleCategorySelect} />
-            <Logo />
-          </Box>
+          <CategoriesDrawer 
+            onCategorySelect={(category) => navigate(`/products/category/${category}`)} 
+          />
+          <Logo />
+        </Box>
 
           <Box sx={{ flex: 1, maxWidth: 600 }}>
             <SearchBar
