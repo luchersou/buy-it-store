@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFetch from './useFetch';
 
-const useSearchBar = ({ onSearch, onCategorySelect }) => {
+const useSearchBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Categories');
   const [searchTerm, setSearchTerm] = useState('');
@@ -44,14 +44,12 @@ const useSearchBar = ({ onSearch, onCategorySelect }) => {
     setAnchorEl(null);
     if (category) {
       setSelectedCategory(category);
-      onCategorySelect?.(category);
     }
   };
 
   const handleSearch = (term = searchTerm) => {
     if (!term.trim()) return;
     
-    onSearch?.(term, selectedCategory);
     setShowSuggestions(false);
     
     const params = new URLSearchParams({ q: term });
@@ -77,4 +75,4 @@ const useSearchBar = ({ onSearch, onCategorySelect }) => {
   };
 }
 
-export default useSearchBar
+export default useSearchBar;

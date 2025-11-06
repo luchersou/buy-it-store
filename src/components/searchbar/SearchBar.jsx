@@ -28,7 +28,7 @@ export default function SearchBar({
     loadingSuggestions,
     handleCategoryClose,
     handleSearch
-  } = useSearchBar({ onSearch, onCategorySelect });
+  } = useSearchBar();
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => {
