@@ -11,7 +11,7 @@ const useSearchBar = ({ onSearch, onCategorySelect }) => {
   const navigate = useNavigate();
 
   const { data: products, loading: loadingSuggestions } = useFetch(
-    debouncedTerm.length > 0 ? 'https://fakestoreapi.com/products' : null
+    debouncedTerm.length > 1 ? 'https://fakestoreapi.com/products' : null
   );
 
   const isDefaultCategory = () => 
