@@ -12,8 +12,8 @@ const images = [
 ];
 
 const Banner = () => {
-  const autoplayPlugin = useMemo(
-    () => Autoplay({ delay: 3000, stopOnInteraction: false })
+  const autoplayPlugin = useMemo(() => 
+    Autoplay({ delay: 3000, stopOnInteraction: false })
   ,[]);
 
   const { 
@@ -150,10 +150,6 @@ const Banner = () => {
               "&:hover": {
                 backgroundColor: colors["--clr-white-1"],
                 transform: "scale(1.15)",
-              },
-              "&:focus": {
-                outline: `2px solid ${colors["--clr-white-1"]}`,
-                outlineOffset: 2,
               },
             }}
           />

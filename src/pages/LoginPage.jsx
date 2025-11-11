@@ -153,7 +153,7 @@ const LoginPage = () => {
             sx={{ textAlign: "center", mt: 3 }}
           >
             Don't have an account?{" "}
-            <Link href="/register" underline="hover" sx={{ fontWeight: 600 }}>
+            <Link onClick={() => navigate("/register")} sx={{ cursor: "pointer", fontWeight: 600, textDecoration: "none" }}>
               Sign Up
             </Link>
           </Typography>

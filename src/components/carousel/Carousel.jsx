@@ -25,6 +25,11 @@ const Carousel = ({ children, options = {}, plugins = [], arrowSize }) => {
     md: 50,
   };
 
+  const getArrowSize = () => {
+    if (arrowSize) return arrowSize;
+    return defaultArrowSizes;
+  };
+
   useEffect(() => {
     if (!emblaApi) return;
 
@@ -42,11 +47,6 @@ const Carousel = ({ children, options = {}, plugins = [], arrowSize }) => {
       emblaApi.off("reInit", updateButtons);
     };
   }, [emblaApi]);
-
-  const getArrowSize = () => {
-    if (arrowSize) return arrowSize;
-    return defaultArrowSizes;
-  };
 
   const arrowStyles = {
     position: "absolute",

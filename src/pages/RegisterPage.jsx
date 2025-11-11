@@ -131,7 +131,7 @@ const RegisterPage = () => {
 
           <Typography variant="body2" sx={{ textAlign: "center" }} >
             Already have an account?{" "}
-            <Link href="/login" underline="hover">
+            <Link onClick={() => navigate("/login")} sx={{ cursor: "pointer", fontWeight: 600, textDecoration: "none" }}>
               Sign in
             </Link>
           </Typography>

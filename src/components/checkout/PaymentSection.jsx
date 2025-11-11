@@ -65,7 +65,7 @@ const PaymentSection = ({ form, paymentMethod, setPaymentMethod }) => {
           <Box sx={{ 
             display: "grid", 
             gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, 
-            gap: 2 
+            gap: 2
           }}>
             <Controller
               name="expiryDate"
