@@ -36,7 +36,7 @@ export const CartProvider = ({ children }) => {
   const clearCart = () => dispatch({ type: "CLEAR_CART" });
 
   return (
-    <CartContext.Provider
+    <CartContext
       value={{
         cartItems: state.cartItems,
         total: state.total,
@@ -49,6 +49,6 @@ export const CartProvider = ({ children }) => {
       }}
     >
       {children}
-    </CartContext.Provider>
+    </CartContext>
   );
 };
