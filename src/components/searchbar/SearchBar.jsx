@@ -1,6 +1,6 @@
 import { Box, Paper, InputBase, IconButton, Button, Backdrop } from '@mui/material';
 import { Search, KeyboardArrowDown } from '@mui/icons-material';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import CategoryMenu from './CategoryMenu';
 import SearchSuggestions from './SearchSuggestions';
 import useSearchBar from '../../hooks/useSearchBar';
@@ -10,10 +10,7 @@ export default function SearchBar({
   categories = [], 
   loading = false, 
   error = null, 
-  onSearch, 
-  onCategorySelect 
 }) {
-  const searchBarRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   
   const {
@@ -63,7 +60,6 @@ export default function SearchBar({
       />
       
       <Box 
-        ref={searchBarRef} 
         sx={{ 
           position: 'relative', 
           width: '100%', 

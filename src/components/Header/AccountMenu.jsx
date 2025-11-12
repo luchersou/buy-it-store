@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/firebaseConfig";
-import { signOut } from "firebase/auth";
 import { menuItems, logoutItem } from "../../data/menuItems";
+import { useAuth } from "../../contexts/AuthContext";
 import {
   Box,
   Button,
@@ -22,26 +21,17 @@ import colors from "../../theme/colors";
 
 const AccountMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [user, setUser] = useState(null);
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(setUser);
-    return unsubscribe;
-  }, []);
 
   const handleClick = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
   const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      handleClose();
-      navigate("/");
-    } catch (error) {
-      console.error("Error logging out: ", error);
-    }
+    await logout(); 
+    handleClose();
+    navigate('/');
   };
 
   if (!user) {

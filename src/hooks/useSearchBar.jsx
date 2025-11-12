@@ -37,7 +37,7 @@ const useSearchBar = () => {
     : [];
 
   useEffect(() => {
-    setShowSuggestions(searchTerm.length > 0);
+    setShowSuggestions(searchTerm.length > 1);
   }, [searchTerm, products]);
 
   const handleCategoryClose = (category) => {
