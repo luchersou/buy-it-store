@@ -9,8 +9,7 @@ import {
   Link,
   Divider,
 } from "@mui/material";
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
 import colors from "../theme/colors";
@@ -20,6 +19,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -29,18 +29,16 @@ const LoginPage = () => {
     setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate(from, { replace: true }); 
+      await login(email, password);
+      navigate(from, { replace: true });
     } catch (error) {
       setError("Invalid credentials. Please check your email and password.");
     }
   };
 
   const handleGoogleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-
     try {
-      await signInWithPopup(auth, provider);
+      await loginWithGoogle();
       navigate(from, { replace: true });
     } catch (error) {
       console.error("Error logging in with Google:", error);

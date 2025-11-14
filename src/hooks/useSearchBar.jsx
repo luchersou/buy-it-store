@@ -55,7 +55,7 @@ const useSearchBar = () => {
     const params = new URLSearchParams({ q: term });
     if (!isDefaultCategory()) params.set('category', selectedCategory);
     
-    navigate(`/products?${params}`);
+    navigate(`/products?${params.toString()}`);
     setSearchTerm('');
     setDebouncedTerm('');
   };

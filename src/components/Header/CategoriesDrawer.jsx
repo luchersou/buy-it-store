@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../../firebase/firebaseConfig'; 
-import { signOut } from 'firebase/auth';
+import { useAuth } from "../../contexts/AuthContext";
 import { 
   Button, 
   Drawer, 
@@ -27,30 +26,34 @@ import colors from "../../theme/colors";
 
 const CategoriesDrawer = ({ onCategorySelect }) => {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   
   const { data: categories, loading, error } = useFetch(
     'https://fakestoreapi.com/products/categories'
   );
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-      setUser(currentUser);
-    });
+  const handleDrawer = (isOpen) => () => setOpen(isOpen);
 
-    return () => unsubscribe();
-  }, []);
+  const handleNavigate = (path) => {
+    setOpen(false);
+    navigate(path);
+  };
+
+  const handleCategorySelect = (category) => {
+    onCategorySelect(category);
+    setOpen(false);
+  };
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
-      handleClose();
+      await logout(); 
+      setOpen(false);
     } catch (error) {
-      console.error('Error logging out: ', error);
+      console.error("Error logging out: ", error);
     }
   };
-
   const formatCategory = (category) => {
     return category.charAt(0).toUpperCase() + category.slice(1);
   };
@@ -61,7 +64,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
   return (
     <>
       <IconButton
-        onClick={() => setOpen(true)}
+        onClick={handleDrawer(true)}
         aria-label="open categories"
         sx={{
           color: 'white',
@@ -76,7 +79,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
       <Drawer
         anchor="left"
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={handleDrawer(false)}
         slotProps={{
           paper: {
             sx: {
@@ -100,7 +103,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
           <Logo />
 
           <IconButton
-            onClick={() => setOpen(false)}
+            onClick={handleDrawer(false)}
             sx={{
               color: colors["--clr-white-1"],
               '&:hover': {
@@ -170,10 +173,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
               <Button
                 variant="contained"
                 fullWidth
-                onClick={() => {
-                  setOpen(false);
-                  navigate('/login');
-                }}
+                onClick={() => handleNavigate('/login')}
                 sx={{
                   bgcolor: colors["--clr-yellow-1"],
                   color: colors["--clr-blue-gray-1"],
@@ -191,10 +191,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
               <Button
                 variant="outlined"
                 fullWidth
-                onClick={() => {
-                  handleClose();
-                  navigate('/register');
-                }}
+                onClick={() => handleNavigate('/register')}
                 sx={{
                   borderColor: colors["--clr-gray-7"],
                   color: colors["--clr-blue-gray-1"],
@@ -243,10 +240,7 @@ const CategoriesDrawer = ({ onCategorySelect }) => {
               {categories.map((category, index) => (
                 <ListItem key={index} disablePadding>
                   <ListItemButton
-                    onClick={() => {
-                      onCategorySelect(category);
-                      setOpen(false);
-                    }}
+                    onClick={() => handleCategorySelect(category)}
                     sx={{
                       py: 1.5,
                       px: 2,

@@ -9,9 +9,8 @@ import {
   Link,
   Divider,
 } from "@mui/material";
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import colors from "../theme/colors";
 
 const RegisterPage = () => {
@@ -19,7 +18,9 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
+  const { signup, logout } = useAuth();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -31,8 +32,8 @@ const RegisterPage = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      await signOut(auth);
+      await signup(email, password); 
+      await logout(); 
       navigate("/login");
     } catch (error) {
       console.error("Firebase error:", error.code, error.message);

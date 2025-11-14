@@ -1,16 +1,23 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import {
+import { 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig"; 
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -25,14 +32,24 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe; 
   }, []);
 
-  const signup = async (email, password, name) => {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(result.user, { displayName: name });
-    setUser({ ...result.user, displayName: name });
+  const signup = async (email, password) => {
+    try {
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+      setUser(result.user);
+      return result.user;
+    } catch (error) {
+      console.error('Signup error:', error);
+      throw error; 
+    }
   };
 
-  const login = (email, password) => {
+  const login = async (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const loginWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
   };
 
   const logout = () => {
@@ -44,13 +61,13 @@ export const AuthProvider = ({ children }) => {
     loading,
     signup,
     login,
+    loginWithGoogle,
     logout,
-    isAuthenticated: !!user,
   };
 
   return (
-    <AuthContext value={value}>
+    <AuthContext.Provider value={value}>
       {!loading && children}
-    </AuthContext>
+    </AuthContext.Provider>
   );
 }
