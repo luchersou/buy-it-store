@@ -72,7 +72,7 @@ const Carousel = ({ children, options = {}, plugins = [], arrowSize }) => {
             left: { xs: -12, sm: -20, md: -28 },
           }}
         >
-          <ChevronLeft sx={{ fontSize: getArrowSize(), }} />
+          <ChevronLeft sx={{ fontSize: getArrowSize() }} />
         </IconButton>
       )}
 
@@ -101,7 +101,7 @@ const Carousel = ({ children, options = {}, plugins = [], arrowSize }) => {
             right: { xs: -12, sm: -20, md: -28 },
           }}
         >
-          <ChevronRight sx={{ fontSize: getArrowSize(), }} />
+          <ChevronRight sx={{ fontSize: getArrowSize() }} />
         </IconButton>
       )}
     </Box>

@@ -5,12 +5,12 @@ import {
 import Loading from '../Loading';
 import colors from "../../theme/colors";
 
-export default function SearchSuggestions({ 
+const SearchSuggestions = ({ 
   show, 
   suggestions, 
   loading, 
   onClose 
-}) {
+}) => {
   if (!show) return null;
 
   return (
@@ -71,3 +71,5 @@ export default function SearchSuggestions({
     </Paper>
   );
 }
+
+export default SearchSuggestions;

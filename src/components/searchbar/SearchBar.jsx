@@ -6,11 +6,11 @@ import SearchSuggestions from './SearchSuggestions';
 import useSearchBar from '../../hooks/useSearchBar';
 import colors from "../../theme/colors";
 
-export default function SearchBar({ 
+const SearchBar = ({ 
   categories = [], 
   loading = false, 
   error = null, 
-}) {
+}) => {
   const [isFocused, setIsFocused] = useState(false);
   
   const {
@@ -153,3 +153,5 @@ export default function SearchBar({
     </>
   );
 }
+
+export default SearchBar;
